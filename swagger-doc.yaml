@@ -1,0 +1,47 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  description: A sample API
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: /v1
+paths:
+  /products:
+    post:
+      description: Creates a new pet in the store.
+      operationId: addPet
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        description: Book Asin
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsinReq'
+      responses:
+        '200':
+          description: pet response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsinRes'
+
+components:
+  schemas:
+    AsinRes:
+      properties:
+        products:
+          type: array
+          items:
+            type: object
+    AsinReq:
+      required:
+        - asin
+      properties:
+        asin:
+          type: string
